@@ -6,10 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./authentication-login.component.css']
 })
 export class AuthenticationLoginComponent implements OnInit {
-
-  constructor() { }
+  user: User
+  constructor(private http: HttpClient) {
+    this.user={
+     username:"",
+     password:""
+   }
+   }
 
   ngOnInit() {
   }
+onSubmit(){
+  console.log(this.user)
+  this.http.get()
 
+}
 }
