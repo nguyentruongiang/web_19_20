@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 interface User{
     username?:string,
      password?:string
@@ -11,18 +12,22 @@ interface User{
 })
 
 export class AuthenticationLoginComponent implements OnInit {
-  user: User
-  constructor(private http: HttpClient) {
-    this.user={
-     username:"",
-     password:""
-   }
-   }
+ validateForm: FormGroup;
 
-  ngOnInit() {
+  submitForm(): void {
+    for (const i in this.validateForm.controls) {
+      this.validateForm.controls[i].markAsDirty();
+      this.validateForm.controls[i].updateValueAndValidity();
+    }
   }
-onSubmit(){
-  console.log(this.user)
 
-}
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.validateForm = this.fb.group({
+      userName: [null, [Validators.required]],
+      password: [null, [Validators.required]],
+      remember: [true]
+    });
+  }
 }

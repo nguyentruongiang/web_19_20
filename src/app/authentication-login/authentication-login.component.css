@@ -1,21 +1,26 @@
-/* Add padding to containers */
-.container {
-  padding: 16px;
-}
 
-/* The "Forgot password" text */
-span.psw {
-  float: right;
-  padding-top: 16px;
-}
+      .login-form {
+        max-width: 300px;
+        position: relative;
+        left: 50px
+      }
 
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-  span.psw {
-    display: block;
-    float: none;
-  }
-  .cancelbtn {
-    width: 100%;
-  }
-}
+      .login-form-forgot {
+        float: right;
+      }
+
+      .login-form-button {
+        width: 100%;
+      }
+      .login{
+         max-width: 400px;
+        background-color: white;
+        position: relative;
+        bottom: 10%;
+        left: 30%;
+        z-index : 1
+
+      }
+      #iconuet{
+        max-height: 75px
+      }
