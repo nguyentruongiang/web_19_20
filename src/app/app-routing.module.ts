@@ -4,7 +4,12 @@ import { AuthenticationLayoutComponent } from './authentication-layout/authentic
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/welcome' },
-  { path: 'welcome',component:AuthenticationLayoutComponent }
+  { path: 'welcome',component:AuthenticationLayoutComponent,
+   children:[{
+   path:'login' ,component:AuthenticationLoginComponent
+ }]
+},
+ { path: 'login',component:AuthenticationLoginComponent },
 ];
 
 @NgModule({
