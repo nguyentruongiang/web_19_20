@@ -39,5 +39,8 @@ export class CreateScheduleComponent implements OnInit {
 
   ngOnInit() {
   }
+  addSchedule(){
+    
+  }
 
 }
