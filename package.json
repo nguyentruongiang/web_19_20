@@ -39,7 +39,7 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": " nnode --optimize_for_size --max_old_space_size=460 --gc_interval=100 node_modules/@angular/cli/bin/ng serve",
+    "start": " node --optimize_for_size --max_old_space_size=460 --gc_interval=100 node_modules/@angular/cli/bin/ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
