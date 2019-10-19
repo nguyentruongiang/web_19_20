@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-account-registration',
-  templateUrl: './account-registration.component.html',
-  styleUrls: ['./account-registration.component.css']
+  selector: 'app-allowed-student',
+  templateUrl: './allowed-student.component.html',
+  styleUrls: ['./allowed-student.component.css']
 })
-export class AccountRegistrationComponent implements OnInit {
+export class AllowedStudentComponent implements OnInit {
   listOfData = [
     {
       key: '1',

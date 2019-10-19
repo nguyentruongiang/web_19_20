@@ -1,18 +1,42 @@
- <nz-layout class="layout">
-      <nz-sider
-        nzCollapsible
-        [(nzCollapsed)]="isCollapsed"
-        [nzBreakpoint]="'lg'"
-        [nzCollapsedWidth]="0"
-        [nzZeroTrigger]="zeroTrigger"
-      >
-        <div class="logo"></div>
+<nz-layout>
+  <nz-header>
+    <div class="logo"></div>
+    <ul nz-menu nzTheme="dark" nzMode="horizontal" class="header-menu">
+      <li nz-menu-item nzSelected>Đăng xuất</li>
+
+    </ul>
+  </nz-header>
+
+
+
+    <nz-layout>
+      <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzBreakpoint]="'lg'" [nzCollapsedWidth]="0"
+        [nzZeroTrigger]="zeroTrigger">
+
         <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+
+          <li nz-submenu nzTitle="Quản lý sinh viên" nzIcon="user">
+            <ul>
+               
+              <li nz-menu-item  [routerLink]="['/','dashboard','cap-tai-khoan']" routerLinkActive="active">Cấp tài khoản</li>
+              <li nz-menu-item [routerLink]="['/','dashboard','danh-sach-cam-thi']">Sinh viên cấm thi</li>
+              <li nz-menu-item  [routerLink]="['/','dashboard','danh-sach-duoc-thi']">Sinh viên được thi</li>
+              
+
+            </ul>
+
+          </li>
+          <li nz-menu-item  [routerLink]="['/','dashboard','tao-lich-thi']">
+            <i nz-icon nzType="user"></i>
+            <span>Tạo lịch thi</span>
+          </li>
+
+
           <li nz-menu-item>
             <i nz-icon nzType="user"></i>
-            <span>Cấp tài khoản</span>
+            <span>Quản lý môn thi</span>
           </li>
-          <li nz-menu-item>
+          <li nz-menu-item [routerLink]="['/','dashboard','dang-ky']">
             <i nz-icon nzType="video-camera"></i>
             <span>Đăng kí ca thi</span>
           </li>
@@ -20,22 +44,13 @@
             <i nz-icon nzType="upload"></i>
             <span>In phiếu báo dự thi</span>
           </li>
-          <li nz-menu-item>
-            <i nz-icon nzType="user"></i>
-            <span>nav 4</span>
-          </li>
+
         </ul>
       </nz-sider>
-      <nz-layout>
-        <nz-header></nz-header>
-        <nz-content>
-          <div class="inner-content">
-            Content
-          </div>
-        </nz-content>
-        <nz-footer>Ant Design ©2019 Implement By Angular</nz-footer>
-      </nz-layout>
+      <nz-content>
+          <router-outlet></router-outlet>
+      </nz-content>
     </nz-layout>
-    <ng-template #zeroTrigger>
-      <i nz-icon nzType="menu-fold" nzTheme="outline"></i>
-    </ng-template>
+
+
+</nz-layout>

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-account-registration',
-  templateUrl: './account-registration.component.html',
-  styleUrls: ['./account-registration.component.css']
+  selector: 'app-create-schedule',
+  templateUrl: './create-schedule.component.html',
+  styleUrls: ['./create-schedule.component.css']
 })
-export class AccountRegistrationComponent implements OnInit {
+export class CreateScheduleComponent implements OnInit {
   listOfData = [
     {
       key: '1',
@@ -26,7 +26,16 @@ export class AccountRegistrationComponent implements OnInit {
       address: 'Sidney No. 1 Lake Park'
     }
   ];
-  constructor() { }
+  exam :any
+  constructor() {
+    this.exam= {
+      key: "",
+      name: "",
+      age: "",
+      address: ""
+    }
+    }
+   
 
   ngOnInit() {
   }

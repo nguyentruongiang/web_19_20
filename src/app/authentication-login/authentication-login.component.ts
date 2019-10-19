@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-interface User{
-    username?:string,
-     password?:string
-}
+
 @Component({
   selector: 'app-authentication-login',
   templateUrl: './authentication-login.component.html',
@@ -13,7 +10,10 @@ interface User{
 
 export class AuthenticationLoginComponent implements OnInit {
  validateForm: FormGroup;
+ public fb: FormBuilder= new FormBuilder()
+ constructor() {
 
+}
   submitForm(): void {
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();
@@ -21,7 +21,7 @@ export class AuthenticationLoginComponent implements OnInit {
     }
   }
 
-  constructor(private fb: FormBuilder) {}
+  
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
