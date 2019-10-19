@@ -15,13 +15,16 @@ import { AuthenticationLayoutComponent } from './authentication-layout/authentic
 import { AuthenticationLoginComponent } from './authentication-login/authentication-login.component';
 import {LayoutComponent} from './layout/layout.component'
 registerLocaleData(en);
-
+import {ExamRegistrationComponent}  from './exam-registration/exam-registration.component'
+import {AccountRegistrationComponent}  from './account-registration/account-registration.component'
 @NgModule({
   declarations: [
     AppComponent,
     AuthenticationLayoutComponent,
     AuthenticationLoginComponent,
-    LayoutComponent
+    LayoutComponent,
+    ExamRegistrationComponent,
+    AccountRegistrationComponent
   ],
   imports: [
     BrowserModule,
