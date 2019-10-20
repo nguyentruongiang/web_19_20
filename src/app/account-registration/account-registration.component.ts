@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-
+import { UploadFile } from 'ng-zorro-antd';
 @Component({
   selector: 'app-account-registration',
   templateUrl: './account-registration.component.html',
   styleUrls: ['./account-registration.component.css']
 })
 export class AccountRegistrationComponent implements OnInit {
+  file
   listOfData = [
     {
       key: '1',
@@ -30,5 +31,14 @@ export class AccountRegistrationComponent implements OnInit {
 
   ngOnInit() {
   }
-
+ 
+  onFileChange($event) {
+    
+   console.log(  $event.srcElement.files)
+   var reader = new FileReader();
+    reader.readAsText($event.target.files[0]);
+    reader.onload = (data) => {
+      console.log(data)
+    }
+}
 }

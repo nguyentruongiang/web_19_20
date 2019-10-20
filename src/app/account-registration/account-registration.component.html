@@ -1,7 +1,8 @@
-<nz-upload nzAction="https://jsonplaceholder.typicode.com/posts/">
-    <button nz-button><i nz-icon nzType="upload"></i><span>Click to Upload</span></button>
-  </nz-upload>
+<nz-input-group  nzSize="large">
+  <input type="file"  (change)=onFileChange($event) name='file'[(ngModel)]='file'/>
+</nz-input-group>
   <button nz-button><i nz-icon nzType="upload"></i><span>Thêm sinh viên</span></button>
+  
   <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
         <input type="text" nz-input placeholder="input search text" />
       </nz-input-group>

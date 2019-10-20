@@ -11,7 +11,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AuthenticationLoginComponent implements OnInit {
  validateForm: FormGroup;
  public fb: FormBuilder= new FormBuilder()
- constructor() {
+
+ constructor( public http:HttpClient) {
 
 }
   submitForm(): void {
@@ -19,6 +20,10 @@ export class AuthenticationLoginComponent implements OnInit {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
     }
+    let user=this.validateForm.getRawValue()
+  this.http.post('https://web1920.herokuapp.com/api/authentication',{username:user.userName,password:user.password}).subscribe(e=>{
+    console.log(e)
+  })
   }
 
   
