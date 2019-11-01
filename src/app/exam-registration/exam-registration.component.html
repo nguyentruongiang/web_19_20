@@ -4,9 +4,7 @@
       <thead>
         <tr>
           <th>Số TT</th>
-          <th>Mã môn học </th>
           <th>Môn thi </th>
-          <th>Ca thi</th>
           <th>Phòng thi</th>
           <th>Ngày thi </th>
           <th>Giờ bắt đầu-Giờ kết thúc </th>
@@ -19,13 +17,18 @@
       </thead>
       <tbody>
           
-        <tr *ngFor="let data of listOfData">
-          <td>{{ data.name }}</td>
-          <td>{{ data.age }}</td>
+        <tr *ngFor="let data of listOfData; index as i">
+            <td>{{ i+1}}</td>
+          <td>{{ data.subject_id.name }}</td>
+          <td>{{ data.room_id}}</td>
+          <td>{{ data.day}}</td>
+          <td>{{  data.time_start +'-'+ data.time_end}}</td>
+          <td>{{ data.no_of_student}}</td>
       
-          <td>{{ data.address }}</td>
-          <td>
-            <a>Đăng k</a>
+      
+         
+          <td *ngIf="data.status">
+            <button nz-button [nzSize]="size" nzType="primary" (click)="register(i)"  [nzLoading]="data.isLoading">Đăng kí </button>
             
           </td>
         </tr>
@@ -34,10 +37,9 @@
   </div>
    
 <div>
-        <nz-table nzTemplateMode #basicTable [nzData]="listOfData">
+        <nz-table nzTemplateMode #basicTable >
               <thead>
                 <tr>
-                  <th>Kì thi </th>
                   <th>Môn thi </th>
                   <th>Ca thi</th>
                   <th>Phòng thi</th>
@@ -52,16 +54,17 @@
               </thead>
               <tbody>
                   
-                <tr *ngFor="let data of basicTable.data">
-                  <td>{{ data.name }}</td>
-                  <td>{{ data.age }}</td>
-              
-                  <td>{{ data.address }}</td>
-                  <td>
-                    <a>Đăng k</a>
-                    
-                  </td>
-                </tr>
+                  <tr *ngFor="let data of yourSchedule;index as i">
+                      <td>{{ i+1}}</td>
+                      <td>{{ data.name }}</td>
+                      <td>{{ data.subject_id.name }}</td>
+                      <td>{{ data.room_id}}</td>
+                      <td>{{ data.day}}</td>
+                      <td>{{ data.time_start +'-'+ data.time_end}}</td>
+                      <td >
+                        <button nz-button [nzSize]="size" nzType="primary" (click)="deleteShift(i)"  [nzLoading]="data.isLoading">Hủy </button>
+                        
+                      </td>
               </tbody>
             </nz-table>
           </div>

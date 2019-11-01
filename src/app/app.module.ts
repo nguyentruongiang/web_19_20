@@ -5,11 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { IconsProviderModule } from './icons-provider.module';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { NzIconModule } from 'ng-zorro-antd/icon';
@@ -22,6 +23,9 @@ import {AccountRegistrationComponent}  from './account-registration/account-regi
 import { BanedStudentComponent } from './baned-student/baned-student.component';
 import { AllowedStudentComponent } from './allowed-student/allowed-student.component';
 import { CreateScheduleComponent } from './create-schedule/create-schedule.component';
+import { ModalCreateScheduleComponent } from './modal-create-schedule/modal-create-schedule.component';
+import { ManagerSubjectComponent } from './manager-subject/manager-subject.component';
+import { CreateUpdateSubjectComponent } from './create-update-subject/create-update-subject.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +36,10 @@ import { CreateScheduleComponent } from './create-schedule/create-schedule.compo
     AccountRegistrationComponent,
     BanedStudentComponent,
     AllowedStudentComponent,
-    CreateScheduleComponent
+    CreateScheduleComponent,
+    ModalCreateScheduleComponent,
+    ManagerSubjectComponent,
+    CreateUpdateSubjectComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +51,9 @@ import { CreateScheduleComponent } from './create-schedule/create-schedule.compo
     BrowserAnimationsModule,
     NzIconModule,
     ReactiveFormsModule,
-    NzFormModule
+    NzFormModule,
+    NzModalModule,
+    NzDatePickerModule 
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

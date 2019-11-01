@@ -16,15 +16,15 @@
             <th>Mã </th>
             <th>Họ và tên</th>
             <th>Tài khoản</th>
-            <th>Mật khẩu </th>
+           
             <th>Thao tác </th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let data of basicTable.data">
-            <td>{{ data.name }}</td>
-            <td>{{ data.age }}</td>
-            <td>{{ data.address }}</td>
+            <td>{{ data.code }}</td>
+            <td>{{ data.full_name }}</td>
+            <td>{{ data.username }}</td>
             <td>{{ data.address }}</td>
             <td>
               <a>Update</a>

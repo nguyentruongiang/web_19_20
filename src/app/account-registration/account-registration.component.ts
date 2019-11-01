@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UploadFile } from 'ng-zorro-antd';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-account-registration',
   templateUrl: './account-registration.component.html',
@@ -27,9 +28,14 @@ export class AccountRegistrationComponent implements OnInit {
       address: 'Sidney No. 1 Lake Park'
     }
   ];
-  constructor() { }
+  constructor(private http:HttpClient) {
+    this.getListUser()
+   }
 
-  ngOnInit() {
+  ngOnInit(
+    
+  ) {
+    
   }
  
   onFileChange($event) {
@@ -40,5 +46,13 @@ export class AccountRegistrationComponent implements OnInit {
     reader.onload = (data) => {
       console.log(data)
     }
+   
+}
+getListUser(){
+     this.http.get('https://web1920.herokuapp.com/api/users/').subscribe((res:any)=>{
+      
+     this.listOfData= res.users
+
+     })
 }
 }
