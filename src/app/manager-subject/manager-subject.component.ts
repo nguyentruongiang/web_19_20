@@ -43,7 +43,7 @@ export class ManagerSubjectComponent implements OnInit {
   handleOk(){
     console.log(this.newSubject)
     this.isVisible = false 
-    this.http.post(`/api/subjects/`,this.newSubject).subscribe((res:any)=>{
+    this.http.post(`https://web1920.herokuapp.com/api/subjects/`,this.newSubject).subscribe((res:any)=>{
 
       confirm(res.message)
       
