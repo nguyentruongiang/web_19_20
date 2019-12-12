@@ -1,0 +1,49 @@
+<nz-input-group nzSize="large">
+    sinh vien cam thi
+    <input type="file" (change)=onFileChange($event,2)/>
+</nz-input-group>
+
+<div>
+    <nz-table #basicTable>
+        <thead>
+        <tr>
+
+            <th>
+                <label
+                        nz-checkbox
+                        [(ngModel)]="allChecked"
+                        (ngModelChange)="updateAllChecked()"
+                        [nzIndeterminate]="indeterminate"
+                >
+                    Check all
+                </label>
+
+            </th>
+            <th>Mã sinh viên</th>
+            <th>Môn học</th>
+            <th>Kì thi</th>
+            <th>Trạng thái</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of listUserAllow;index as i">
+            <td><label nz-checkbox (ngModelChange)="updateSingleChecked(i)" [(ngModel)]="data.isCheck"></label></td>
+            <td>{{ data.code }}</td>
+            <td>{{ data.subject }}</td>
+            <td>{{ data.exam }}</td>
+
+            <td *ngIf="data.isRegisterComplete">
+                Thành công
+
+            </td>
+            <td *ngIf="data.isRegisterComplete===false">
+                {{data.message}}
+
+            </td>
+        </tr>
+        </tbody>
+    </nz-table>
+</div>
+
+

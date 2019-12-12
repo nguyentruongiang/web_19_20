@@ -1,0 +1,44 @@
+<div>
+    <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+        <input [(ngModel)]="code" (ngModelChange)="getListUser()" type="text" nz-input placeholder="input search text"/>
+    </nz-input-group>
+    <ng-template #suffixButton>
+        <button nz-button nzType="primary" nzSize="large" nzSearch>Search</button>
+    </ng-template>
+    <nz-table #basicTable [nzData]="listOfData">
+        <thead>
+        <tr>
+            <th>Mã</th>
+            <th>Họ và tên</th>
+            <th>Tài khoản</th>
+
+            <th>Thao tác</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of listOfData;index as i">
+            <td>{{ data.code }}</td>
+            <td>{{ data.full_name }}</td>
+            <td>{{ data.username }}</td>
+
+
+            <td>
+                <a (click)="showModal(i)">Update</a>
+                <a (click)="showModalChangePassword(i)">Sửa mật khẩu</a>
+                <!--                <a>Delete</a>-->
+                <!--                a (click)="showModal(data)">Update</a>-->
+
+                <a (click)="deleteUser(i)"> Delete</a>
+
+            </td>
+        </tr>
+        </tbody>
+    </nz-table>
+</div>
+
+<nz-modal [(nzVisible)]="isVisible" nzTitle='{{this.title}}' (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+    <app-information-user *ngIf="title=='Sửa thông tin'" [userInfromation]="userInfromation"></app-information-user>
+    <app-change-password-user [userInfromation] *ngIf="title=='Sửa mật khẩu'"></app-change-password-user>
+</nz-modal>
+
+

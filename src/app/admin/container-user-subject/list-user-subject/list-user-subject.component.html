@@ -1,0 +1,58 @@
+<div>
+      <nz-input-group [nzSuffix]="suffixIconSearch">
+      <input [(ngModel)]="code" (ngModelChange)="getUserInSubject()" type="text" nz-input placeholder="mã sinh viên" />
+    </nz-input-group>
+    <ng-template #suffixIconSearch>
+      <i nz-icon nzType="search"></i>
+    </ng-template>
+      <nz-input-group [nzSuffix]="suffixIconSearch">
+      <input [(ngModel)]="exam" (ngModelChange)="getUserInSubject()" type="text" nz-input placeholder="Kì thi" />
+    </nz-input-group>
+    <ng-template #suffixIconSearch>
+      <i nz-icon nzType="search"></i>
+    </ng-template>
+    <nz-input-group [nzSuffix]="suffixIconSearch">
+      <input [(ngModel)]="subject" (ngModelChange)="getUserInSubject()" type="text" nz-input placeholder="Môn học" />
+    </nz-input-group>
+    <ng-template #suffixIconSearch>
+      <i nz-icon nzType="search"></i>
+    </ng-template>
+    <nz-table #basicTable [nzData]="lisUserInSubject">
+        <thead>
+        <tr>
+            <th>Stt</th>
+            <th>Mã</th>
+            <th>Họ và tên</th>
+            <th>Môn học</th>
+            <th>Kì thi</th>
+            <th>Trạng thái</th>
+            <th>Thao tác</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of lisUserInSubject; index as i">
+            <td>{{ i + 1}}</td>
+            <td>{{ data.code}}</td>
+            <td>{{ data.full_name }}</td>
+
+            <td>{{ data.subject }}</td>
+
+            <td>{{ data.exam }}</td>
+            <td>
+
+                <nz-select [(ngModel)]="data.be_register" (ngModelChange)="updateserInSubject(i)">
+                  <nz-option nzLabel="Cấm thi " [nzValue]="false" ></nz-option>
+                    <nz-option nzLabel="Được thi " [nzValue]="true" ></nz-option>
+                    <nz-option nzLabel="Cấm thi " [nzValue]="false" nzHide></nz-option>
+                    <nz-option nzLabel="Được thi " [nzValue]="true" nzHide></nz-option>
+                </nz-select>
+            </td>
+            <td>
+
+                <a (click)="deleteUserInSubject(i)">Delete</a>
+
+            </td>
+        </tr>
+        </tbody>
+    </nz-table>
+</div>

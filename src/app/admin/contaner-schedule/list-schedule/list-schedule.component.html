@@ -1,0 +1,103 @@
+<div style="margin-bottom: 16px;">
+    <label for="a">kì thi</label>
+    <nz-select
+            [(ngModel)]="examName"
+            nzShowSearch
+            nzServerSearch
+            nzPlaceHolder="Kì thi"
+
+            [nzShowArrow]="false"
+            (ngModelChange)="getSchedule()"
+            (nzOnSearch)="searchExam($event)"
+
+    >
+        <nz-option *ngFor="let o of listExam" [nzLabel]="o.name" [nzValue]="o.name"></nz-option>
+
+    </nz-select>
+    <label for="a"> Mon thi</label>
+    <nz-select
+            nzShowSearch
+            nzServerSearch
+            nzPlaceHolder="Môn học"
+            [(ngModel)]="subjectName"
+            [nzShowArrow]="false"
+            [nzFilterOption]="nzFilterOption"
+            (ngModelChange)="getSchedule()"
+            (nzOnSearch)="searchSubject($event)">
+
+        <nz-option *ngFor="let o of listSubject" [nzLabel]="o.name" [nzValue]="o.id"></nz-option>
+
+    </nz-select>
+    <label for="a">Phòng thi</label>
+    <nz-select
+            nzShowSearch
+            nzServerSearch
+            nzPlaceHolder="Phòng học"
+            [(ngModel)]="roomName"
+            (ngModelChange)="getSchedule()"
+            [nzShowArrow]="false"
+            [nzFilterOption]="nzFilterOption"
+            (nzOnSearch)="searchRoom($event)"
+    >
+        <nz-option *ngFor="let o of listRoom" [nzLabel]="o.name" [nzValue]="o.id"></nz-option>
+
+    </nz-select>
+    <nz-date-picker [(ngModel)]="day" (ngModelChange)="onChangeDate($event)"></nz-date-picker>
+</div>
+
+
+<button nz-button (click)="showModal()"><i nz-icon nzType="upload"></i><span>Tạo ca thi</span></button>
+
+
+<div>
+    <nz-table #basicTable [nzData]="listOfData">
+        <thead>
+        <tr>
+            <th>Stt</th>
+            <th>Kì thi</th>
+            <th>Môn thi</th>
+            <th>Phòng thi</th>
+            <th>Ngày thi</th>
+            <th>Giờ bắt đầu-Giờ kết thúc</th>
+            <th>Số sinh viên</th>
+
+
+            <th>Chức năng</th>
+
+        </tr>
+        </thead>
+        <tbody>
+
+
+        <tr *ngFor="let data of listOfData; index as i">
+            <td>{{i}}</td>
+            <td>{{ data.exam }}</td>
+            <td>{{ data.subject}}</td>
+
+            <td>{{ data.room }}</td>
+
+
+            <td>{{ data.day }}</td>
+            <td>{{ data.start_time + "-" + data.end_time}}</td>
+            <td>{{ data.no_of_student + '/' + data.max_student  }}</td>
+            <td>
+                <button nz-button [nzSize]="size" nzType="primary" (click)="editSchedule(i)"
+                        [nzLoading]="data.isLoading">Sửa
+                </button>
+                <nz-divider nzType="vertical"></nz-divider>
+                <button nz-button [nzSize]="size" nzType="primary" (click)="deleteSchdedule(i)"
+                        [nzLoading]="data.isLoading">Xóa
+                </button>
+                <button nz-button [nzSize]="size" nzType="primary" (click)="dowload(i)" [nzLoading]="data.isLoading">
+                    Download
+                </button>
+
+            </td>
+        </tr>
+        </tbody>
+    </nz-table>
+</div>
+<nz-modal [(nzVisible)]="isVisible" [nzTitle]="title " (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+
+    <app-schedule-information [shift]="schedule"></app-schedule-information>
+</nz-modal>

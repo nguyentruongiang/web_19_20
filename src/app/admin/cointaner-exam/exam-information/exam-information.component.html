@@ -1,0 +1,13 @@
+<input nz-input placeholder="Kì thi" [(ngModel)]="exam.name"/>
+<nz-select
+        nzShowSearch
+        nzServerSearch
+        nzPlaceHolder="Môn học"
+        [(ngModel)]="exam.status"
+        [nzShowArrow]="false"
+        [nzFilterOption]="nzFilterOption"
+
+>
+    <nz-option [nzLabel]="'Mở'" [nzValue]="true"></nz-option>
+    <nz-option [nzLabel]="'Đóng'" [nzValue]="false"></nz-option>
+</nz-select>

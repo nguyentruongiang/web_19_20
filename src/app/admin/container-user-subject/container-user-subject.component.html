@@ -1,0 +1,16 @@
+<div>
+    <nz-tabset>
+
+        <nz-tab nzTitle="Danh sach tai khoan sinh vien">
+            <app-list-user-subject></app-list-user-subject>
+        </nz-tab>
+
+        <nz-tab nzTitle="Thêm sinh viên được thi">
+            <app-create-user-subject [be_register]="allow"></app-create-user-subject>
+        </nz-tab>
+        <nz-tab nzTitle="Thêm sinh viên bị cấm thi">
+          <app-create-user-subject [be_register]="deny"></app-create-user-subject>
+        </nz-tab>
+    </nz-tabset>
+
+</div>

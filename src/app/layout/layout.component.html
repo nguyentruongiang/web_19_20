@@ -2,8 +2,17 @@
   <nz-header>
     <div class="logo"></div>
     <ul nz-menu nzTheme="dark" nzMode="horizontal" class="header-menu">
-      <li nz-menu-item nzSelected>Đăng xuất</li>
-
+   
+      <li nz-menu-item ><button nz-button nzType="primary" nz-dropdown [nzDropdownMenu]="menu" >Xin chào {{getFullName()}} [{{getUserName()}}]  <i nz-icon nzType="down"></i></button>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+          <ul nz-menu>
+            <li nz-menu-item (click)=changePassword()>Thay đổi mật khẩu</li>
+            <li nz-menu-item  (click)="logout()"> <i nz-icon nzType="logout" nzTheme="outline"></i>Đăng xuất</li>
+            
+          </ul>
+        </nz-dropdown-menu>
+      </li>
+      
     </ul>
   </nz-header>
 
@@ -13,26 +22,26 @@
       <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzBreakpoint]="'lg'" [nzCollapsedWidth]="0"
         [nzZeroTrigger]="zeroTrigger">
 
-        <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+        <ul  nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
 
-          <li nz-submenu nzTitle="Quản lý sinh viên" nzIcon="user">
+          <li *ngIf="isAdmin()"nz-submenu nzTitle="Quản lý sinh viên" nzIcon="user">
             <ul>
                
               <li nz-menu-item  [routerLink]="['/','dashboard','cap-tai-khoan']" routerLinkActive="active">Cấp tài khoản</li>
               <li nz-menu-item [routerLink]="['/','dashboard','danh-sach-cam-thi']">Sinh viên cấm thi</li>
-              <li nz-menu-item  [routerLink]="['/','dashboard','danh-sach-duoc-thi']">Sinh viên được thi</li>
+              <li nz-menu-item  [routerLink]="['/','dashboard','danh-sach-duoc-thi']">Danh sach sinh vien </li>
               
 
             </ul>
 
           </li>
-          <li nz-menu-item  [routerLink]="['/','dashboard','tao-lich-thi']">
+          <li *ngIf="isAdmin()" nz-menu-item  [routerLink]="['/','dashboard','lich-thi']">
             <i nz-icon nzType="user"></i>
             <span>Tạo lịch thi</span>
           </li>
 
 
-          <li nz-menu-item  [routerLink]="['/','dashboard','mon-hoc']">
+          <li *ngIf="isAdmin()" nz-menu-item  [routerLink]="['/','dashboard','mon-hoc']">
             <i nz-icon nzType="user"></i>
             <span>Quản lý môn thi</span>
           </li>
@@ -40,10 +49,11 @@
             <i nz-icon nzType="video-camera"></i>
             <span>Đăng kí ca thi</span>
           </li>
-          <li nz-menu-item>
-            <i nz-icon nzType="upload"></i>
-            <span>In phiếu báo dự thi</span>
+          <li *ngIf="isAdmin()" nz-menu-item [routerLink]="['/','dashboard','ki-thi']">
+            <i nz-icon nzType="video-camera"></i>
+            <span>Quản lý kì thi </span>
           </li>
+
 
         </ul>
       </nz-sider>
@@ -51,6 +61,9 @@
           <router-outlet></router-outlet>
       </nz-content>
     </nz-layout>
-
+    <nz-modal [(nzVisible)]="isVisible" nzTitle="Tha đổi mật khẩu " (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  
+      <app-change-password ></app-change-password>   
+</nz-modal>
 
 </nz-layout>

@@ -1,0 +1,71 @@
+<div>
+    <nz-table nzTemplateMode>
+        <thead>
+        <tr>
+            <th>Số TT</th>
+            <th>Môn thi</th>
+            <th>Phòng thi</th>
+            <th>Ngày thi</th>
+            <th>Giờ bắt đầu-Giờ kết thúc</th>
+            <th>Số lượng</th>
+
+
+            <th>Chức năng</th>
+
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr *ngFor="let data of listOfData; index as i">
+            <td *ngIf="data.status==false"><label nz-checkbox  (nzCheckedChange)="register(i)"></label></td>
+              <td *ngIf="data.status"></td>
+            <td>{{ data.subject_id.name }}</td>
+            <td>{{ data.room_id}}</td>
+            <td>{{ data.day}}</td>
+            <td>{{  data.time_start + '-' + data.time_end}}</td>
+            <td>{{ data.no_of_student+'/'+data.max_student}}</td>
+
+
+        </tr>
+        </tbody>
+    </nz-table>
+</div>
+<div>
+    <nz-table nzTemplateMode #basicTable>
+        <thead>
+        <tr>
+            <th>Stt</th>
+            <th>Kì thi</th>
+            <th>Môn thi</th>
+
+            <th>Phòng thi</th>
+            <th>Ngày thi</th>
+            <th>Giờ bắt đầu-Giờ kết thúc</th>
+            <th>Chỗ ngồi</th>
+
+            <th>Chức năng</th>
+
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr *ngFor="let data of yourSchedule;index as i">
+            <td>{{ i + 1}}</td>
+            <td>{{ data.schedule.exam }}</td>
+            <td>{{ data.schedule.subject}}</td>
+            <td>{{ data.schedule.room}}</td>
+            <td>{{ data.schedule.day}}</td>
+            <td>{{ data.schedule.start_time + '-' + data.schedule.end_time}}</td>
+            <td>{{ data.seat}}</td>
+            <td>
+                <button nz-button [nzSize]="size" nzType="primary" (click)="deleteShift(i)"
+                        [nzLoading]="data.isLoading">Hủy
+                </button>
+
+            </td>
+        </tbody>
+    </nz-table>
+
+</div>
+<button nz-button  nzType="primary" (click)="printRegistion()">In đăng kí</button>
+

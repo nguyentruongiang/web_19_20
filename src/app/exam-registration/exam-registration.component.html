@@ -63,9 +63,8 @@
                       <td>{{ data.time_start +'-'+ data.time_end}}</td>
                       <td >
                         <button nz-button [nzSize]="size" nzType="primary" (click)="deleteShift(i)"  [nzLoading]="data.isLoading">Hủy </button>
-                        
+                         <button nz-button [nzSize]="size" nzType="primary" (click)="print(i)"  [nzLoading]="data.isLoading">In </button>
                       </td>
               </tbody>
             </nz-table>
           </div>
-           

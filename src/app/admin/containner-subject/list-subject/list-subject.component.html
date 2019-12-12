@@ -1,0 +1,43 @@
+<button nz-button (click)="addNewSubject()"><i nz-icon></i><span>Thêm môn thi</span></button>
+
+ <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+        <input [(ngModel)]="subjectName" (ngModelChange)="getListSubject()" type="text" nz-input placeholder="input search text"/>
+    </nz-input-group>
+    <ng-template #suffixButton>
+        <button nz-button nzType="primary" nzSize="large" nzSearch>Search</button>
+    </ng-template>
+<div>
+    <nz-table #basicTable [nzData]="listSubject">
+        <thead>
+        <tr>
+            <th>Stt</th>
+            <th>Mã lớp học</th>
+            <th>Tên môn học</th>
+            <th>Chức năng</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of listSubject; index as i">
+            <td>{{ i + 1 }}</td>
+            <td>{{ data.code }}</td>
+            <td>{{ data.name }}</td>
+
+            <td>
+                <button nz-button [nzSize]="size" nzType="primary" (click)="editSubject(i)"
+                        [nzLoading]="data.isLoading">Sửa
+                </button>
+                <nz-divider nzType="vertical"></nz-divider>
+                <button nz-button [nzSize]="size" nzType="primary" (click)="deleteSubject(i)"
+                        [nzLoading]="data.isLoading">Xóa
+                </button>
+
+            </td>
+        </tr>
+        </tbody>
+    </nz-table>
+</div>
+<nz-modal [(nzVisible)]="isVisible" [nzTitle]="title" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+    <app-subject-information [subject]= "newSubject"></app-subject-information>
+
+</nz-modal>
