@@ -27,9 +27,9 @@ export const routes: Routes = [
     imports: [
         RouterModule.forChild(routes),
         CommonModule,
-         NgZorroAntdModule,
+        NgZorroAntdModule,
     ],
-    providers:[RegisterApiService,PdfService]
+    providers: [RegisterApiService, PdfService]
 })
 
 export class StudentModule {

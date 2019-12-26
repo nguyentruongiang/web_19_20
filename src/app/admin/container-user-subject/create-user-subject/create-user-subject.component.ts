@@ -75,7 +75,7 @@ export class CreateUserSubjectComponent implements OnInit {
 
     coverArray(data: Array<any>) {
         let exam;
-        console.log(this.be_register)
+        console.log(this.be_register);
         data.forEach((value: any, index) => {
             if (index == 0) {
                 exam = value[0];

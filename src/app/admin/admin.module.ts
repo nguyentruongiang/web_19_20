@@ -8,7 +8,7 @@ import {NzIconModule} from 'ng-zorro-antd/icon';
 import {NzDatePickerModule} from 'ng-zorro-antd/date-picker';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NzFormModule} from 'ng-zorro-antd/form';
-import {NgZorroAntdModule, NzTableModule} from 'ng-zorro-antd';
+import {NgZorroAntdModule, NzPaginationModule, NzTableModule} from 'ng-zorro-antd';
 import {UserApiService} from '../services/api/user-api.service';
 import {CreatUsersComponent} from './contain-user/creat-users/creat-users.component';
 import {ExcelProssingService} from '../excel-prossing.service';
@@ -90,8 +90,10 @@ export const routes: Routes = [
         NzIconModule,
         NzFormModule,
         NzTableModule,
+        NzPaginationModule
     ],
-    providers: [UserApiService, ExcelProssingService, UserSubjectApiService, SubjectApiService, ExamApiService, ScheduleApiService, RoomApiService, PdfService]
+    providers: [UserApiService, ExcelProssingService, UserSubjectApiService, SubjectApiService, ExamApiService,
+        ScheduleApiService, RoomApiService, PdfService]
 })
 export class AdminModule {
 }

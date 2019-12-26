@@ -6,5 +6,6 @@ export interface User {
     code?: String,
     isSend?: Boolean,
     isCheck?: Boolean
+    role ?:number
 
 }

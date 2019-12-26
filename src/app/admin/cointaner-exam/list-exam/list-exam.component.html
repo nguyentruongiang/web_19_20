@@ -4,7 +4,7 @@
     <ng-template #suffixButton>
         <button nz-button nzType="primary" nzSize="large" nzSearch>Search</button>
     </ng-template>
-
+<button (click)="addExam()"></button>
 <div>
     <nz-table>
         <thead>
@@ -24,7 +24,7 @@
             <td *ngIf="data.isEdit">
                 <nz-select nzShowSearch nzServerSearch nzPlaceHolder="Môn học" [(ngModel)]="exam.status"
                            (ngModelChange)="change(i,exam.status)"
-                           [nzShowArrow]="false" [nzFilterOption]="nzFilterOption">
+                           [nzShowArrow]="false" >
                     <nz-option [nzLabel]="'Mở'" [nzValue]="true"></nz-option>
                     <nz-option [nzLabel]="'Đóng'" [nzValue]="false"></nz-option>
                 </nz-select>

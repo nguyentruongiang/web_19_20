@@ -28,8 +28,8 @@
             <ul>
                
               <li nz-menu-item  [routerLink]="['/','dashboard','cap-tai-khoan']" routerLinkActive="active">Cấp tài khoản</li>
-              <li nz-menu-item [routerLink]="['/','dashboard','danh-sach-cam-thi']">Sinh viên cấm thi</li>
-              <li nz-menu-item  [routerLink]="['/','dashboard','danh-sach-duoc-thi']">Danh sach sinh vien </li>
+
+              <li nz-menu-item  [routerLink]="['/','dashboard','danh-sach-duoc-thi']">Sinh viên môn học </li>
               
 
             </ul>
@@ -37,7 +37,7 @@
           </li>
           <li *ngIf="isAdmin()" nz-menu-item  [routerLink]="['/','dashboard','lich-thi']">
             <i nz-icon nzType="user"></i>
-            <span>Tạo lịch thi</span>
+            <span>Lịch thi</span>
           </li>
 
 

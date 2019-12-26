@@ -8,12 +8,12 @@ export class UserApiService {
     private url: string;
 
     constructor(private http: HttpClient) {
-        this.url = '/api/users';
+        this.url = '/api/users/';
     }
 
     searchUser(data): Promise<any> {
 
-        let params = new HttpParams().set('code', data.code);
+        let params = new HttpParams().set('code', data.code).set('page', data.page);
 
 
         return this.http.get(this.url, {params}).toPromise().then()

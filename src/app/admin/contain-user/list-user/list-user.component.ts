@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
 import {ExcelProssingService} from '../../../excel-prossing.service';
 import {ManagerStudentService} from '../../../manager-student.service';
 import {UserApiService} from '../../../services/api/user-api.service';
@@ -23,8 +22,9 @@ export class ListUserComponent implements OnInit {
     index: number;
     listOfData = [];
     code: any = '';
+    page = 0;
 
-    constructor(private http: HttpClient, private excel: ExcelProssingService, private mangerStudent: ManagerStudentService, private userApi: UserApiService) {
+    constructor(private excel: ExcelProssingService, private mangerStudent: ManagerStudentService, private userApi: UserApiService) {
 
     }
 
@@ -38,7 +38,8 @@ export class ListUserComponent implements OnInit {
 
         await this.userApi.searchUser(
             {
-                code: this.code
+                code: this.code,
+                page: this.page
             }
         ).then((val: any) => {
             if (val.success == true) {
@@ -92,6 +93,15 @@ export class ListUserComponent implements OnInit {
         this.userInfromation = data;
         console.log(this.userInfromation);
         this.isVisible = true;
+    }
+
+    changePage($event) {
+        if ((this.listOfData.length < 10 && $event < this.page) || this.listOfData.length == 10) {
+            this.page = $event - 1;
+        }
+
+
+        this.getListUser();
     }
 
     showModalChangePassword(i): void {

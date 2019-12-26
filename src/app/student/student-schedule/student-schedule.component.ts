@@ -95,7 +95,7 @@ export class StudentScheduleComponent implements OnInit {
     }
 
     printRegistion() {
-        this.pdf.printRegister(this.yourSchedule);
+        // this.pdf.printRegister(this.yourSchedule);
     }
 
 

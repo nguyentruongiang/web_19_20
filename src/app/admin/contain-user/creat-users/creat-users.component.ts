@@ -78,7 +78,7 @@ export class CreatUsersComponent implements OnInit {
     coverArray(data: Array<any>) {
         data.forEach((value: any, index) => {
             if (index > 0) {
-                let user: User = {code: value[1], username: value[2], password: value[3], full_name: value[4]};
+                const user: User = {code: value[1], username: value[2], password: value[3], full_name: value[4], role: 1};
                 this.listUser.push(user);
             }
         });
