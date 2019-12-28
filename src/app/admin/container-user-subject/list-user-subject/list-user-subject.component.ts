@@ -11,6 +11,7 @@ export class ListUserSubjectComponent implements OnInit {
     code: any = '';
     exam: any = '';
     subject: any = '';
+    page = 0;
 
     constructor(private  userInSubjectApi: UserSubjectApiService) {
     }
@@ -29,14 +30,17 @@ export class ListUserSubjectComponent implements OnInit {
     }
 
     deleteUserInSubject(i) {
-        this.userInSubjectApi.deleteUserInSubject(this.lisUserInSubject[i]).then((val: any) => {
-            if (val.success == true) {
-                confirm('Xoa thành công');
-                this.lisUserInSubject.splice(i, 1);
-            } else {
-                confirm(val.message);
-            }
-        });
+        let result = confirm('Bạn có muốn xóa dữ liệu ở dòng' + (i + 1));
+        if(result) {
+            this.userInSubjectApi.deleteUserInSubject(this.lisUserInSubject[i]).then((val: any) => {
+                if (val.success == true) {
+                    confirm('Xoa thành công');
+                    this.lisUserInSubject.splice(i, 1);
+                } else {
+                    confirm(val.message);
+                }
+            });
+        }
     }
 
     updateserInSubject(i) {

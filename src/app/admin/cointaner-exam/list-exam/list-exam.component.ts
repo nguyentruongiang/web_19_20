@@ -13,7 +13,7 @@ export class ListExamComponent implements OnInit {
     exam: Exam;
     listExam = [];
     examName = '';
-
+    page=0
     constructor(private examApi: ExamApiService, private http: HttpClient) {
         this.exam = {name: '', status: true};
     }
@@ -98,5 +98,13 @@ export class ListExamComponent implements OnInit {
 
     editCancel(i) {
         this.listExam[i].isEdit = false;
+    }
+     changePage($event) {
+        if ((this.listExam.length < 10 && $event < this.page) || this.listExam.length == 10) {
+            this.page = $event - 1;
+        }
+
+
+        this.getListExam();
     }
 }

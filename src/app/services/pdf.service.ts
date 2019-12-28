@@ -12,8 +12,107 @@ export class PdfService {
     constructor() {
     }
 
-    printRegister(data: []) {
-        let fm = {};
+    printRegister(data) {
+        let user: any = JSON.parse(localStorage.getItem('user'));
+        let fm = {
+                content: [
+                    {
+                        alignment: 'center',
+                        style: 'header',
+                        columns: [
+
+                            {
+                                text: ['ĐẠI HỌC QUỐC GIA HÀ NỘI\n',
+                                    {text: 'TRƯỜNG ĐẠI HỌC CÔNG NGHỆ ', bold: true}]
+                            },
+                            {
+                                text: ['CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM\n',
+                                    {text: 'Độc lập - Tự do - Hạnh phúc', bold: true}]
+                            }
+                        ]
+                    },
+                    '\n',
+                    {
+                        alignment: 'center', bold: true, fontSize: 16,
+                        text: 'PHIẾU DỰ THI KÌ THI '+data.schedule.exam ,
+                    },
+                    '\n',
+                    {
+                        margin: [20, 0, 0, 4],
+                        columns: [
+                            {
+                                width: 350,
+                                text: 'Họ tên thí sinh:' + user.full_name + ' \n'
+                            },
+
+                        ]
+                    },
+
+                    {
+                        margin: [20, 0, 0, 4],
+                        text: 'MSSV:' + user.username
+                    },
+                    {
+                        text: 'Môn học: ' + data.schedule.subject, margin: [20, 0, 0, 4],
+                    },
+
+                    {
+                        margin: [23, 0, 0, 5],
+
+                        text: 'Mã môn học: MAT12345'
+                    },
+
+
+                    {
+                        margin: [2, 10, 0, 0],
+                        style: 'tableExample',
+                        table: {
+                            widths: [25, '*', '*', '*', '*'],
+                            body: [
+                                ['STT', 'Ngày thi', 'Phòng thi', 'Thời gian thi', 'Chỗ ngồi'],
+                                ['1', data.schedule.day, data.schedule.room, data.schedule.start_time + '-' + data.schedule.end_time, data.seat]
+                            ]
+                        }
+                    },
+
+                    {
+                        margin: [-3, 25, 0, 0],
+                        alignment: 'center',
+                        columns: [
+                            {
+                                bold: true,
+                                text: [
+                                    'Giảng viên coi thi\n',
+                                    {
+                                        italics: true, bold: false,
+                                        text: '(Ký và ghi rõ họ tên)'
+                                    }]
+                            },
+                            {
+                                text: ['Hà Nội, ngày ..... tháng ..... nam 2019\n',
+                                    {
+                                        text:
+                                            '(Chữ ký sinh viên)', italics: true
+                                    },
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                styles: {
+                    header: {
+                        fontSize: 13,
+                        margin: [0, 0, 0, 10]
+                    },
+
+                    tableExample: {
+                        alignment: 'center',
+                        margin: [20, 0, 0, 0]
+                    },
+
+                }
+            }
+        ;
         pdfMake.createPdf(fm).open();
     }
 
@@ -54,14 +153,13 @@ export class PdfService {
                     alignment: 'center',
                     style: 'header',
                     columns: [
-
                         {
-                            text: ['Ð?I H?C QU?C GIA HÀ N?I\n',
-                                {text: 'TRU?NG Ð?I H?C CÔNG NGH? ', bold: true}]
+                            text: ['ĐẠI HỌC QUỐC GIA HÀ NỘI\n',
+                                {text: 'TRƯỜNG ĐẠI HỌC CÔNG NGHỆ ', bold: true}]
                         },
                         {
-                            text: ['C?NG HÒA XÃ H?I CH? NGHIA VI?T NAM\n',
-                                {text: 'Ð?c l?p - T? do - H?nh phúc', bold: true}]
+                            text: ['CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM\n',
+                                {text: 'Độc lập - Tự do - Hạnh phúc', bold: true}]
                         }
                     ]
                 },
@@ -76,7 +174,7 @@ export class PdfService {
                     columns: [
                         {
                             width: 350,
-                            text: 'MÔN THI:' + schedule.subject+ '\n'
+                            text: 'MÔN THI:' + schedule.subject + '\n'
                         },
                         {
                             text: 'NGÀY THI: ' + schedule.day
@@ -85,7 +183,19 @@ export class PdfService {
                 },
 
                 {
-                    text: 'PHÒNG THI S?: '+schedule.room, margin: [20, 2, 0, 4],
+                    text: 'PHÒNG THI SỐ: ' + schedule.room, margin: [20, 2, 0, 4],
+                },
+                {
+                    margin: [20, 0, 0, 5],
+                    columns: [
+                        {
+                            width: 300,
+                            text: 'Thời gian bắt đầu: ' + schedule.start_time + '\n'
+                        },
+                        {
+                            text: 'Thời gian kết thúc: ' + schedule.end_time + '\n'
+                        }
+                    ]
                 },
 
                 {
@@ -107,14 +217,14 @@ export class PdfService {
                                 'Gi?ng viên coi thi\n',
                                 {
                                     italics: true, bold: false,
-                                    text: '(Ký và ghi rõ h? tên)'
+                                    text: '(Ký và ghi rõ họ tên)'
                                 }]
                         },
                         {
-                            text: ['Hà N?i, ngày ..... tháng ..... nam 2019\n',
+                            text: ['Hà Nội, ngày ..... tháng ..... nam 2019\n',
                                 {
                                     text:
-                                        '(Ch? ký sinh viên)', italics: true
+                                        '(Chữ ký sinh viên)', italics: true
                                 },
                             ]
                         }

@@ -1,12 +1,19 @@
 <div style="margin-bottom: 16px;">
-    <label for="a">Full name</label>
+    <label for="a">Họ và tên</label>
     <input  nz-input [(ngModel)]="userInfromation.full_name" placeholder="default size" nzSize="default"/>
 </div>
 <div style="margin-bottom: 16px;">
-    <label for="a">Code</label>
+    <label for="a">Mã</label>
     <input [(ngModel)]="userInfromation.code"nz-input placeholder="default size" nzSize="default"/>
 </div>
-<label for="a">Username</label>
+<label for="a">Tài khoản</label>
 <input  nz-input [(ngModel)]="userInfromation.username"placeholder="default size" nzSize="default"/>
+<label for="a">Quyền hạn</label>
+ <nz-select [(ngModel)]="userInfromation.role " style="width: 100%">
+                  <nz-option nzLabel="Học sinh " [nzValue]="1" ></nz-option>
+                    <nz-option nzLabel="Quản tri viên" [nzValue]="2" ></nz-option>
+                    <nz-option nzLabel="Học sinh  " [nzValue]="1" nzHide></nz-option>
+                    <nz-option nzLabel="Quản tri viên " [nzValue]="2" nzHide></nz-option>
+                </nz-select>
 
 

@@ -1,13 +1,16 @@
-<div>
-    <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-        <input [(ngModel)]="code" (ngModelChange)="getListUser()" type="text" nz-input placeholder="input search text"/>
+<div id="list-user">
+    <div id="seach">
+       <nz-input-group nzSize="large" [nzSuffix]="suffixIconSearch">
+      <input [(ngModel)]="code"  (ngModelChange)="getListUser()" type="text" nz-input placeholder="Mã sinh viên hoặc tên " />
     </nz-input-group>
-    <ng-template #suffixButton>
-        <button nz-button nzType="primary" nzSize="large" nzSearch>Search</button>
+    <ng-template #suffixIconSearch>
+      <i nz-icon nzType="search"></i>
     </ng-template>
-    <nz-table nzTemplateMode>
+    </div>
+    <nz-table nzTemplateMode nzBordered>
         <thead>
-        <tr>
+        <tr align ="center">
+             <th>STT</th>
             <th>Mã</th>
             <th>Họ và tên</th>
             <th>Tài khoản</th>
@@ -16,19 +19,19 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let data of listOfData;index as i">
+        <tr *ngFor="let data of listOfData;index as i" align="center">
+              <td>{{ i+1 +page*10}}</td>
             <td>{{ data.code }}</td>
             <td>{{ data.full_name }}</td>
             <td>{{ data.username }}</td>
 
 
             <td>
-                <a (click)="showModal(i)">Update</a>
-                <a (click)="showModalChangePassword(i)">Sửa mật khẩu</a>
-                <!--                <a>Delete</a>-->
-                <!--                a (click)="showModal(data)">Update</a>-->
-
-                <a (click)="deleteUser(i)"> Delete</a>
+                <button nz-button (click)="showModal(i) "nzType="default">Cập nhật</button>
+                 <nz-divider nzType="vertical"></nz-divider>
+                <button nz-button (click)="showModalChangePassword(i)"nzType="primary">Sửa mật khẩu</button>
+                 <nz-divider nzType="vertical"></nz-divider>
+                <button nz-button (click)="deleteUser(i)"nzType="danger">Xóa</button>
 
             </td>
         </tr>

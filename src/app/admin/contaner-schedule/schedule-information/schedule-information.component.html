@@ -1,5 +1,5 @@
 <div style="margin-bottom: 16px;">
-    <label for="a">kì thi</label>
+    <label for="a">Kì thi</label>
     <nz-select
             [(ngModel)]="shift.exam_id"
             nzShowSearch
@@ -17,7 +17,7 @@
 </div>
 
 <div style="margin-bottom: 16px;">
-    <label for="a"> Mon thi</label>
+    <label for="a"> Môn thi</label>
     <nz-select
             nzShowSearch
             nzServerSearch
@@ -44,19 +44,19 @@
             [nzFilterOption]="nzFilterOption"
             (nzOnSearch)="searchRoom($event)"
     >
-        <nz-option *ngFor="let o of listRoom" [nzLabel]="o.name" [nzValue]="o.id"></nz-option>
-        <nz-option [nzLabel]="shift.room" [nzValue]="shift.room_id" nzHide></nz-option>
+        <nz-option *ngFor="let o of listRoom" [nzLabel]="'Phòng:'+o.name +'-'+o.location+' số chỗ ngồi: ' +o.max_student" [nzValue]="o.id"></nz-option>
+          <nz-option [nzLabel]="'Phòng:'+shift.room +' số chỗ ngồi: ' +shift.max_student" [nzValue]="shift.id" [nzValue]="shift.room_id" nzHide></nz-option>
     </nz-select>
 </div>
 <div style="margin-bottom: 16px;">
-    <label for="a">Ngay thi</label>
-    <nz-date-picker [(ngModel)]="this.shift.day" (ngModelChange)="onChangeDate($event)"></nz-date-picker>
+    <label for="a">Ngày thi</label>
+    <nz-date-picker style="padding-left: 15%" [(ngModel)]="this.shift.day" (ngModelChange)="onChangeDate($event)"></nz-date-picker>
 </div>
 <div style="margin-bottom: 16px;">
     <label for="a">Giờ bắt đầu </label>
-    <nz-time-picker [(ngModel)]="shift.start_time" nzFormat="HH:mm"></nz-time-picker>
+    <nz-time-picker style="padding-left: 10%"[(ngModel)]="shift.start_time" nzFormat="HH:mm"></nz-time-picker>
 </div>
 <div style="margin-bottom: 16px;">
     <label for="a">Giờ kết thúc</label>
-    <nz-time-picker [(ngModel)]="shift.end_time" nzFormat="HH:mm"></nz-time-picker>
+    <nz-time-picker style="padding-left: 10%"[(ngModel)]="shift.end_time" nzFormat="HH:mm"></nz-time-picker>
 </div>

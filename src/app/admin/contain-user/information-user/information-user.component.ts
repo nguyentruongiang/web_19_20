@@ -11,7 +11,8 @@ export class InformationUserComponent implements OnInit {
         username: '',
         password: '',
         full_name: '',
-        code: ''
+        code: '',
+        role: 1
     };
 
 

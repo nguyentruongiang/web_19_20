@@ -4,7 +4,7 @@ import {ExamApiService} from '../../../services/api/exam-api.service';
 import {SubjectApiService} from '../../../services/api/subject-api.service';
 import {RoomApiService} from '../../../services/api/room-api.service';
 import {PdfService} from '../../../services/pdf.service';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 
 @Component({
@@ -27,6 +27,7 @@ export class ListScheduleComponent implements OnInit {
     listSubject = [];
     listRoom = [];
     day: any = '';
+    page = 0;
 
     constructor(private examApi: ExamApiService, private subjectApi: SubjectApiService, private scheduleAPi: ScheduleApiService, private roomApi: RoomApiService,
                 private pdf: PdfService, private http: HttpClient) {
@@ -139,6 +140,9 @@ export class ListScheduleComponent implements OnInit {
                     this.isVisible = false;
                     let data = Object.assign({}, this.schedule);
                     data.no_of_student = 0;
+                    data.id = value.schedule_id;
+                    data.start_time = data.start_time.toTimeString().slice(0, 5);
+                    data.end_time = data.end_time.toTimeString().slice(0, 5);
                     this.listOfData.push(data);
                     console.log(data);
                     this.schedule = {};
@@ -183,8 +187,9 @@ export class ListScheduleComponent implements OnInit {
     }
 
     dowload(i) {
-        let schedule=this.listOfData[i]
-        this.http.get('/api/schedules/' + this.listOfData[i].id + '/users').subscribe((res: any) => {
+        let schedule = this.listOfData[i];
+        let headers = new HttpHeaders().set('Authorization', 'Bearer ' + JSON.parse(localStorage.getItem('user')).token);
+        this.http.get('/api/schedules/' + this.listOfData[i].id + '/users', {headers}).subscribe((res: any) => {
                 if (res.success == true) {
                     let bodyData = [
                         [{text: 'STT', style: 'tableHeader', alignment: 'center'}, {
@@ -196,28 +201,35 @@ export class ListScheduleComponent implements OnInit {
                             text: 'Tên thí sinh',
                             style: 'tableHeader',
                             alignment: 'center'
-                        }, {text: 'Ch? ký', style: 'tableHeader', alignment: 'center'}],
+                        }, {text: 'Chữ ký', style: 'tableHeader', alignment: 'center'}],
 
                     ];
                     let data: Array<any> = res.data;
                     console.log(data);
                     for (let i = 0; i < data.length; i++) {
                         console.log(data[i]);
-                        let item = [{text: i+1, style: 'tableHeader', alignment: 'center'}, {
+                        let item = [{text: i + 1, style: 'tableHeader', alignment: 'center'}, {
                             text: data[i].code,
                             style: 'tableHeader',
                             alignment: 'center'
                         },
-                            {text: '1', style: 'tableHeader', alignment: 'center'},
+                            {text: data[i].seat, style: 'tableHeader', alignment: 'center'},
                             data[i].full_name, ''];
                         bodyData[i + 1] = item;
                     }
                     console.log(bodyData);
-                    this.pdf.printListUserInchedule(bodyData,schedule);
+                    this.pdf.printListUserInchedule(bodyData, schedule);
                 }
             }
         );
     }
 
+    reset() {
+        this.examName = '';
+        this.roomName = '';
+        this.subjectName = '';
+        this.day = '';
+        this.getSchedule();
+    }
 
 }

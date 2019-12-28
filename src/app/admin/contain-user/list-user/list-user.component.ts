@@ -120,13 +120,16 @@ export class ListUserComponent implements OnInit {
     }
 
     deleteUser(i) {
-        this.userApi.deleteUser(this.listOfData[i].id).then((val: any) => {
-            if (val.success == true) {
-                this.listOfData.splice(i, 1);
-            } else {
-                confirm(val.message);
-            }
-        });
+        let result = confirm('Bạn có muốn xóa tài khoản' +  this.listOfData[i].code);
+        if (result) {
+            this.userApi.deleteUser(this.listOfData[i].id).then((val: any) => {
+                if (val.success == true) {
+                    this.listOfData.splice(i, 1);
+                } else {
+                    confirm(val.message);
+                }
+            });
+        }
     }
 
 }

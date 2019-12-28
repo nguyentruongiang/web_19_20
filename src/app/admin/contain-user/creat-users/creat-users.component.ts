@@ -13,6 +13,7 @@ export class CreatUsersComponent implements OnInit {
 
     listUser = [];
     allChecked = false;
+    isImport = false;
 
     constructor(private http: HttpClient, private excel: ExcelProssingService, private useApi: UserApiService) {
     }
@@ -49,7 +50,9 @@ export class CreatUsersComponent implements OnInit {
                 if (val.success == true) {
 
                     this.listUser[i].isRegisterComplete = true;
+                    this.listUser[i].isCheck = true;
                 } else {
+                    this.listUser[i].isCheck = false;
                     this.listUser[i].isRegisterComplete = false;
                     this.listUser[i].message = JSON.stringify(val.message);
                 }
@@ -67,9 +70,11 @@ export class CreatUsersComponent implements OnInit {
         var reader = new FileReader();
         reader.readAsBinaryString($event.target.files[0]);
         reader.onload = (data: any) => {
+            this.listUser = [];
             const bstr: string = data.target.result;
             let dataUser = this.excel.getListUser(bstr);
             this.coverArray(dataUser);
+            this.isImport = true;
 
         };
 

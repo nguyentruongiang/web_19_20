@@ -23,7 +23,7 @@ export class StudentScheduleComponent implements OnInit {
 
     getSchedule() {
         let schedule = [];
-        let yourSchedule = [];
+
         this.registerApi.getListCanRegister('').then((res: any) => {
             res.schedule.forEach(value => {
 
@@ -40,7 +40,8 @@ export class StudentScheduleComponent implements OnInit {
                         no_of_student: val.no_of_student,
                         max_student: val.room_id.max_student,
                         isLoading: false,
-                        status: !value.status
+                        status: !value.status,
+                        exam: value.exam
                     });
 
                     this.listOfData = schedule;
@@ -55,6 +56,8 @@ export class StudentScheduleComponent implements OnInit {
         this.registerApi.getListMyRegister('').then((res: any) => {
             if (res.success == true) {
                 this.yourSchedule = res.schedules;
+            } else {
+                confirm('Có lỗi xảy ra');
             }
         });
     }
@@ -66,6 +69,11 @@ export class StudentScheduleComponent implements OnInit {
             if (value.success == true) {
                 this.listOfData[index].status = true;
                 this.listOfData[index].no_of_student++;
+                this.listOfData.forEach(value => {
+                    if (value.subject_id == this.listOfData[index].subject_id) {
+                        value.status = true;
+                    }
+                });
                 this.getMySchedule();
             }
         });
@@ -81,9 +89,13 @@ export class StudentScheduleComponent implements OnInit {
             if (val.success == true) {
                 confirm(val.message);
                 this.listOfData.forEach(value => {
-                    if (value.schedule_id == schedule_id) {
-                        value.status = false;
+                    if (value.schedule_id== schedule_id) {
+
                         value.no_of_student--;
+                    }
+                    if (value.subject_id == this.listOfData[index].subject_id) {
+                        value.status = false;
+
                     }
                 });
                 this.yourSchedule.splice(index, 1);

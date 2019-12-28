@@ -6,8 +6,8 @@
       </div>
       
       <ul nz-menu nzTheme="dark" nzMode="horizontal" class="header-menu">
-        <li nz-menu-item>Đăng kí</li>
-        <li nz-menu-item nzSelected >Đăng nhập </li>
+
+        <li nz-menu-item nzSelected [routerLink]="['/','welcome','login']">Đăng nhập </li>
       </ul>
     </nz-header>
     <nz-content>
@@ -26,5 +26,4 @@
                     </div>
     </nz-footer>
   </nz-layout>
-  
   

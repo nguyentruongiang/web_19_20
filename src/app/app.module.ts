@@ -17,8 +17,6 @@ import {AuthenticationLayoutComponent} from './authentication/authentication-lay
 import {AuthenticationLoginComponent} from './authentication/authentication-login/authentication-login.component';
 import {LayoutComponent} from './layout/layout.component';
 import {ExamRegistrationComponent} from './exam-registration/exam-registration.component';
-
-import {PrintRegistrationComponent} from './print-registration/print-registration.component';
 import {ChangePasswordComponent} from './change-password/change-password.component';
 import {ExcelProssingService} from './excel-prossing.service';
 import {ManagerStudentService} from './manager-student.service';
@@ -42,7 +40,6 @@ registerLocaleData(en);
         ExamRegistrationComponent,
 
 
-        PrintRegistrationComponent,
         ChangePasswordComponent,
 
 

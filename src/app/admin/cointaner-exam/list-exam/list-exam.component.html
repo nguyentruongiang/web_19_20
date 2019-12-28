@@ -1,12 +1,18 @@
-  <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-        <input [(ngModel)]="examName" (ngModelChange)="getListExam()" type="text" nz-input placeholder="input search text"/>
-    </nz-input-group>
-    <ng-template #suffixButton>
-        <button nz-button nzType="primary" nzSize="large" nzSearch>Search</button>
-    </ng-template>
-<button (click)="addExam()"></button>
 <div>
-    <nz-table>
+<div id="seach">
+    <nz-input-group nzSize="large" [nzSuffix]="suffixIconSearch">
+        <input [(ngModel)]="examName" (ngModelChange)="getListExam()" type="text" nz-input placeholder="Tên kì thi"/>
+    </nz-input-group>
+    <ng-template #suffixIconSearch>
+        <i nz-icon nzType="search"></i>
+    </ng-template>
+</div>
+
+<button nz-button  nzType="primary" (click)="addExam()"
+                       >Tạo kì thi
+                </button>
+<div>
+    <nz-table nzTemplateMode nzBordered>
         <thead>
         <tr>
             <th>Stt</th>
@@ -24,7 +30,7 @@
             <td *ngIf="data.isEdit">
                 <nz-select nzShowSearch nzServerSearch nzPlaceHolder="Môn học" [(ngModel)]="exam.status"
                            (ngModelChange)="change(i,exam.status)"
-                           [nzShowArrow]="false" >
+                           [nzShowArrow]="false">
                     <nz-option [nzLabel]="'Mở'" [nzValue]="true"></nz-option>
                     <nz-option [nzLabel]="'Đóng'" [nzValue]="false"></nz-option>
                 </nz-select>
@@ -32,13 +38,14 @@
             <td *ngIf="data.status&&!data.isEdit"> Mỏ</td>
             <td *ngIf="!data.status&& !data.isEdit"> Đóng</td>
             <td *ngIf="!data.isEdit">
-                <button nz-button [nzSize]="size" nzType="primary" (click)="deleteExam(i)"
-                        [nzLoading]="data.isLoading">Xóa
-                </button>
-                <nz-divider nzType="vertical"></nz-divider>
-                <button nz-button [nzSize]="size" nzType="primary" (click)="editExam(i)"
+                <button nz-button  nzType="default" (click)="editExam(i)"
                         [nzLoading]="data.isLoading">Sửa
                 </button>
+                <nz-divider nzType="vertical"></nz-divider>
+                <button nz-button  nzType="danger" (click)="deleteExam(i)"
+                        [nzLoading]="data.isLoading">Xóa
+                </button>
+
 
             </td>
             <td *ngIf="data.isEdit">
@@ -56,7 +63,9 @@
         </tbody>
     </nz-table>
 </div>
+    <nz-pagination [nzPageIndex]="page" (nzPageIndexChange)="changePage($event)" [nzTotal]="(page+2)*10"></nz-pagination>
 <nz-modal [(nzVisible)]="isVisible" nzTitle="Tạo ca thi " (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
 
     <app-exam-information [exam]='exam'></app-exam-information>
 </nz-modal>
+</div>

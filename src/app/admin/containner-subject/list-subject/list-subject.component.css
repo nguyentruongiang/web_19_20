@@ -1,0 +1,13 @@
+nz-input-group {
+    width: 30%;
+}
+#seach{
+    padding: 16px;
+    position: relative;
+    left:30%;
+}
+nz-pagination{
+
+    padding: 16px;
+}
+#list-user{}

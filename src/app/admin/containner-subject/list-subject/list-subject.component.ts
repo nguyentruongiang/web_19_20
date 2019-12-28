@@ -16,7 +16,7 @@ export class ListSubjectComponent implements OnInit {
     newSubject: Subject;
     oldSubject: number;
     subjectName = '';
-
+    page =0
     constructor(private http: HttpClient, private subjectApi: SubjectApiService) {
         this.newSubject = {code: '', name: ''};
     }

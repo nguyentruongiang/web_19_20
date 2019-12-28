@@ -1,11 +1,13 @@
 <div>
-    <nz-input-group nzSize="large">
+    <nz-input-group nzSize="large" style="padding: 4px">
         <input type="file" (change)=onFileChange($event)/>
     </nz-input-group>
-    <nz-table #basicTable>
-        <thead>
-        <tr>
 
+    <nz-table *ngIf="isImport" nzTemplateMode nzBordered>
+        <thead>
+
+        <tr>
+            <th>STT</th>
             <th>
                 <label
                         nz-checkbox
@@ -13,10 +15,11 @@
                         (ngModelChange)="updateAllChecked()"
                         [nzIndeterminate]="indeterminate"
                 >
-                    Check all
+                    Chọn tất cả
                 </label>
 
             </th>
+
             <th>Mã</th>
             <th>Họ và tên</th>
             <th>Tài khoản</th>
@@ -26,8 +29,10 @@
         </thead>
         <tbody>
         <tr *ngFor="let data of listUser;index as i">
+            <td>{{ i + 1}}</td>
             <td><label nz-checkbox [(ngModel)]="data.isCheck"
                        (ngModelChange)="updateSingleChecked(i)"></label></td>
+
             <td>{{ data.code }}</td>
             <td>{{ data.full_name }}</td>
             <td>{{ data.username }}</td>
@@ -38,6 +43,10 @@
             </td>
             <td *ngIf="data.isRegisterComplete===false">
                 {{data.message}}
+
+            </td>
+            <td *ngIf="data.isRegisterComplete!=true &&data.isRegisterComplete!==false">
+
 
             </td>
         </tr>

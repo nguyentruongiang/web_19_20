@@ -41,7 +41,7 @@ export const routes: Routes = [
                 component: ContainUserComponent,
 
             }, {
-                path: 'danh-sach-cam-thi',
+                path: 'sinh-vien-mon-hoc',
                 component: ContainerUserSubjectComponent
             },
             {

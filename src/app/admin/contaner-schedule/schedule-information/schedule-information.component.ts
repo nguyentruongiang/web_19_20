@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
 import {ExamApiService} from '../../../services/api/exam-api.service';
 import {SubjectApiService} from '../../../services/api/subject-api.service';
 import {RoomApiService} from '../../../services/api/room-api.service';
@@ -28,7 +27,7 @@ export class ScheduleInformationComponent implements OnInit {
     date;
 
     constructor(private examApi: ExamApiService, private subjectApi: SubjectApiService,
-                private roomApi:RoomApiService) {
+                private roomApi: RoomApiService) {
         this.shift = {
             exam_id: ''
         };
@@ -42,7 +41,7 @@ export class ScheduleInformationComponent implements OnInit {
         this.listRoom.forEach(value => {
             if (value.id == data) {
                 this.shift.max_student = value.max_student;
-                this.shift.room = value.name+'-'+value.location
+                this.shift.room = value.name + '-' + value.location;
             }
         });
 
@@ -89,11 +88,11 @@ export class ScheduleInformationComponent implements OnInit {
     }
 
     searchRoom(value: string) {
-        this.roomApi.getListRoom(value).then((value:any)=>{
-            if(value.success==true){
-                  this.listRoom = value.rooms;
+        this.roomApi.getListRoom(value).then((value: any) => {
+            if (value.success == true) {
+                this.listRoom = value.rooms;
             }
-        })
+        });
 
     }
 

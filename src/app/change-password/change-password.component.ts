@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-change-password',
-  templateUrl: './change-password.component.html',
-  styleUrls: ['./change-password.component.css']
+    selector: 'app-change-password',
+    templateUrl: './change-password.component.html',
+    styleUrls: ['./change-password.component.css']
 })
 export class ChangePasswordComponent implements OnInit {
-  password:any
-  constructor() { 
-    this.password={old_password:"",new_passworrd:""}
-  }
+    password: any;
 
-  ngOnInit() {
-  }
+    constructor() {
+        this.password = {old_password: '', new_passworrd: '', cf_password: ''};
+    }
+
+    ngOnInit() {
+    }
 
 }

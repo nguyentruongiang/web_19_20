@@ -11,6 +11,7 @@ export class CreateUserSubjectComponent implements OnInit {
     @Input() be_register = true;
     listUserAllow = [];
     allChecked = false;
+    isImport = false;
 
     constructor(private userInSubjectApi: UserSubjectApiService, private excel: ExcelProssingService) {
     }
@@ -49,6 +50,7 @@ export class CreateUserSubjectComponent implements OnInit {
                 } else {
                     this.listUserAllow[i].isRegisterComplete = false;
                     this.listUserAllow[i].message = JSON.stringify(val.message);
+                    this.listUserAllow[i].isCheck=false
                 }
             });
             this.allChecked = true;
@@ -59,6 +61,7 @@ export class CreateUserSubjectComponent implements OnInit {
     }
 
     onFileChange($event, type) {
+        this.listUserAllow=[]
         const target: DataTransfer = <DataTransfer> ($event.target);
 
         let reader = new FileReader();
@@ -67,6 +70,7 @@ export class CreateUserSubjectComponent implements OnInit {
             const bstr: string = data.target.result;
             let dataUser = this.excel.getListUser(bstr);
             this.coverArray(dataUser);
+            this.isImport = true;
 
 
         };

@@ -3,7 +3,7 @@
 </nz-input-group>
 
 <div>
-    <nz-table #basicTable>
+    <nz-table nzBordered nzTemplateMode *ngIf="isImport">
         <thead>
         <tr>
 
@@ -38,6 +38,10 @@
             </td>
             <td *ngIf="data.isRegisterComplete===false">
                 {{data.message}}
+
+            </td>
+             <td *ngIf="data.isRegisterComplete!==false&&data.isRegisterComplete!==true">
+
 
             </td>
         </tr>

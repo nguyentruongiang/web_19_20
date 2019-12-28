@@ -1,0 +1,54 @@
+<div>
+    <label for="a">Kì thi</label>
+   <nz-select style="padding-bottom: 10px"
+            [(ngModel)]="examName"
+            nzShowSearch
+            nzServerSearch
+            nzPlaceHolder="Kì thi"
+
+            [nzShowArrow]="false"
+            (ngModelChange)="getMySchedule()"
+            (nzOnSearch)="searchExam($event)"
+
+    >
+        <nz-option *ngFor="let o of listExam" [nzLabel]="o.name" [nzValue]="o.name"></nz-option>
+
+    </nz-select>
+     <nz-table nzTemplateMode nzBordered>
+
+        <thead>
+        <tr>
+            <th>Stt</th>
+            <th>Kì thi</th>
+            <th>Môn thi</th>
+
+            <th>Phòng thi</th>
+            <th>Ngày thi</th>
+            <th>Giờ bắt đầu-Giờ kết thúc</th>
+            <th>Chỗ ngồi</th>
+
+            <th>Chức năng</th>
+
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr *ngFor="let data of yourSchedule;index as i">
+            <td>{{ i + 1}}</td>
+            <td>{{ data.schedule.exam }}</td>
+            <td>{{ data.schedule.subject}}</td>
+            <td>{{ data.schedule.room}}</td>
+            <td>{{ data.schedule.day}}</td>
+            <td>{{ data.schedule.start_time + '-' + data.schedule.end_time}}</td>
+            <td>{{ data.seat}}</td>
+            <td>
+                <button nz-button [nzSize]="size" nzType="primary" (click)="print(i)"
+                        [nzLoading]="data.isLoading">In phiếu báo
+                </button>
+
+            </td>
+        </tbody>
+    </nz-table>
+
+
+</div>

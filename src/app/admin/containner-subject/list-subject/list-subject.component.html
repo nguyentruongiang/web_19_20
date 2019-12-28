@@ -1,13 +1,15 @@
 <button nz-button (click)="addNewSubject()"><i nz-icon></i><span>Thêm môn thi</span></button>
 
- <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-        <input [(ngModel)]="subjectName" (ngModelChange)="getListSubject()" type="text" nz-input placeholder="input search text"/>
+  <div id="seach">
+       <nz-input-group nzSize="large" [nzSuffix]="suffixIconSearch">
+      <input [(ngModel)]="subjectName"  (ngModelChange)="getListSubject()" type="text" nz-input placeholder="Tên môn học" />
     </nz-input-group>
-    <ng-template #suffixButton>
-        <button nz-button nzType="primary" nzSize="large" nzSearch>Search</button>
+    <ng-template #suffixIconSearch>
+      <i nz-icon nzType="search"></i>
     </ng-template>
+    </div>
 <div>
-    <nz-table #basicTable [nzData]="listSubject">
+    <nz-table nzTemplateMode nzBordered>
         <thead>
         <tr>
             <th>Stt</th>
@@ -24,11 +26,11 @@
             <td>{{ data.name }}</td>
 
             <td>
-                <button nz-button [nzSize]="size" nzType="primary" (click)="editSubject(i)"
+                <button nz-button [nzSize]="size" nzType="default" (click)="editSubject(i)"
                         [nzLoading]="data.isLoading">Sửa
                 </button>
                 <nz-divider nzType="vertical"></nz-divider>
-                <button nz-button [nzSize]="size" nzType="primary" (click)="deleteSubject(i)"
+                <button nz-button [nzSize]="size" nzType="danger" (click)="deleteSubject(i)"
                         [nzLoading]="data.isLoading">Xóa
                 </button>
 
@@ -36,6 +38,7 @@
         </tr>
         </tbody>
     </nz-table>
+     <nz-pagination [nzPageIndex]="page" (nzPageIndexChange)="changePage($event)" [nzTotal]="(page+2)*10"></nz-pagination>
 </div>
 <nz-modal [(nzVisible)]="isVisible" [nzTitle]="title" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
     <app-subject-information [subject]= "newSubject"></app-subject-information>

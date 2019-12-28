@@ -1,22 +1,26 @@
 <div>
+    <div style="padding: 24px">
       <nz-input-group [nzSuffix]="suffixIconSearch">
       <input [(ngModel)]="code" (ngModelChange)="getUserInSubject()" type="text" nz-input placeholder="mã sinh viên" />
     </nz-input-group>
     <ng-template #suffixIconSearch>
       <i nz-icon nzType="search"></i>
     </ng-template>
-      <nz-input-group [nzSuffix]="suffixIconSearch">
-      <input [(ngModel)]="exam" (ngModelChange)="getUserInSubject()" type="text" nz-input placeholder="Kì thi" />
-    </nz-input-group>
-    <ng-template #suffixIconSearch>
-      <i nz-icon nzType="search"></i>
-    </ng-template>
-    <nz-input-group [nzSuffix]="suffixIconSearch">
+        <nz-input-group [nzSuffix]="suffixIconSearch">
       <input [(ngModel)]="subject" (ngModelChange)="getUserInSubject()" type="text" nz-input placeholder="Môn học" />
     </nz-input-group>
     <ng-template #suffixIconSearch>
       <i nz-icon nzType="search"></i>
     </ng-template>
+      <nz-input-group [nzSuffix]="suffixIconSearch">
+      <input [(ngModel)]="exam" (ngModelChange)="getUserInSubject()" type="text" nz-input placeholder="Kì thi" />
+
+    </nz-input-group>
+    <ng-template #suffixIconSearch>
+      <i nz-icon nzType="search"></i>
+    </ng-template>
+
+    </div>
     <nz-table nzTemplateMode>
         <thead>
         <tr>
@@ -54,5 +58,6 @@
             </td>
         </tr>
         </tbody>
+         <nz-pagination [nzPageIndex]="page" (nzPageIndexChange)="changePage($event)" [nzTotal]="(page+2)*10"></nz-pagination>
     </nz-table>
 </div>
